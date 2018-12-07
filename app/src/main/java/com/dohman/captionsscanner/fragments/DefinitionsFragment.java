@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dohman.captionsscanner.MainActivity;
 import com.dohman.captionsscanner.R;
@@ -21,7 +20,6 @@ import com.dohman.captionsscanner.WordActivity;
 import com.dohman.captionsscanner.threads.FetchAPIData;
 
 import java.util.Objects;
-import java.util.Set;
 
 import static com.dohman.captionsscanner.WordActivity.getWord;
 
@@ -84,12 +82,18 @@ public class DefinitionsFragment extends Fragment {
                 String minutes = SettingsActivity.getDefaults("minutes", getContext());
                 if (Integer.parseInt(minutes) < 10) {
                     Snackbar snackbar = Snackbar.make(parent, getString(R.string.banned) +
-                            "Try again at " + hour + ":0" + minutes + " o'clock.", Snackbar.LENGTH_INDEFINITE);
+                            " Try again at " + hour + ":0" + minutes + " o'clock.", Snackbar.LENGTH_INDEFINITE);
+                    View snackbarView = snackbar.getView();
+                    TextView textView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setMaxLines(5);
 
                     snackbar.show();
                 } else {
                     Snackbar snackbar = Snackbar.make(parent, getString(R.string.banned) +
-                            "Try again at " + hour + ":" + minutes + " o'clock.", Snackbar.LENGTH_INDEFINITE);
+                            " Try again at " + hour + ":" + minutes + " o'clock.", Snackbar.LENGTH_INDEFINITE);
+                    View snackbarView = snackbar.getView();
+                    TextView textView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setMaxLines(5);
 
                     snackbar.show();
                 }
@@ -105,7 +109,6 @@ public class DefinitionsFragment extends Fragment {
 
         synchronized (mFetchAPIData) {
             try {
-                MainActivity.calls++;
                 mFetchAPIData.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();

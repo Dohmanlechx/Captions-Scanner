@@ -18,6 +18,12 @@ import android.widget.Toast;
 import com.dohman.captionsscanner.controller.DatabaseHelper;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+import static com.dohman.captionsscanner.MainActivity.banned;
+import static com.dohman.captionsscanner.MainActivity.calls;
+import static com.dohman.captionsscanner.MainActivity.warned;
 
 public class StoredWordsActivity extends AppCompatActivity {
     private final Context context = this;
@@ -25,6 +31,9 @@ public class StoredWordsActivity extends AppCompatActivity {
     private DatabaseHelper db;
     private ArrayList<String> listItem;
     private ListView wordsListView;
+
+    private int bannedHour;
+    private int allowedHour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +48,28 @@ public class StoredWordsActivity extends AppCompatActivity {
         wordsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                calls++;
+                if (calls == 6) {
+                    if (!warned)
+                        warned = true;
+                }
+                if (calls >= 7) {
+                    // User gets banned from API calling for 2 hours
+                    // 7 calls in 60 seconds is more than 1 call in 10 seconds = obviously abuse
+                    if (!banned) {
+                        banned = true;
+                        SettingsActivity.setBanBoolean(true, context);
+                        Date bannedDate = new Date();
+                        SettingsActivity.setDefaults("ban_start", String.valueOf(bannedDate.getTime()), context);
+                        Calendar timeBanned = Calendar.getInstance();
+                        timeBanned.setTime(new Date());
+                        bannedHour = timeBanned.get(Calendar.HOUR_OF_DAY);
+                        int minutes = timeBanned.get(Calendar.MINUTE);
+                        allowedHour = bannedHour + 2;
+                        SettingsActivity.setDefaults("allowed_hour", String.valueOf(allowedHour), context);
+                        SettingsActivity.setDefaults("minutes", String.valueOf(minutes), context);
+                    }
+                }
                 Intent intent = new Intent(context, WordActivity.class);
                 intent.putExtra("CHOSEN_WORD", parent.getItemAtPosition(position).toString());
                 startActivity(intent);

@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void run() {
                 if (banned) {
-                    Log.d(TAG, "seconds left: BANNED!");
+                    warned = false;
                     Date checkDate = new Date();
                     long now = checkDate.getTime();
                     long banStart = Long.parseLong(SettingsActivity.getDefaults("ban_start", context));
@@ -135,27 +135,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         countdown = 60;
                         calls = 0;
                         warned = false;
-                    }
-                    if (calls == 5) {
-                        if (!warned)
-                            warned = true;
-                    }
-                    if (calls >= 7) {
-                        // User gets banned from API calling for 2 hours
-                        // 7 calls in 60 seconds is more than 1 call in 10 seconds = obviously abuse
-                        if (!banned) {
-                            banned = true;
-                            SettingsActivity.setBanBoolean(true, context);
-                            Date bannedDate = new Date();
-                            SettingsActivity.setDefaults("ban_start", String.valueOf(bannedDate.getTime()), context);
-                            Calendar timeBanned = Calendar.getInstance();
-                            timeBanned.setTime(new Date());
-                            bannedHour = timeBanned.get(Calendar.HOUR_OF_DAY);
-                            int minutes = timeBanned.get(Calendar.MINUTE);
-                            allowedHour = bannedHour + 2;
-                            SettingsActivity.setDefaults("allowed_hour", String.valueOf(allowedHour), context);
-                            SettingsActivity.setDefaults("minutes", String.valueOf(minutes), context);
-                        }
                     }
                 }
 
@@ -339,6 +318,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     offset = ccTV.getOffsetForPosition(event.getX(), event.getY());
                     Intent intent = new Intent(context, WordActivity.class);
                     try {
+                        calls++;
+                        if (calls == 6) {
+                            if (!warned)
+                                warned = true;
+                        }
+                        if (calls >= 7) {
+                            // User gets banned from API calling for 2 hours
+                            // 7 calls in 60 seconds is more than 1 call in 10 seconds = obviously abuse
+                            if (!banned) {
+                                banned = true;
+                                SettingsActivity.setBanBoolean(true, context);
+                                Date bannedDate = new Date();
+                                SettingsActivity.setDefaults("ban_start", String.valueOf(bannedDate.getTime()), context);
+                                Calendar timeBanned = Calendar.getInstance();
+                                timeBanned.setTime(new Date());
+                                bannedHour = timeBanned.get(Calendar.HOUR_OF_DAY);
+                                int minutes = timeBanned.get(Calendar.MINUTE);
+                                allowedHour = bannedHour + 2;
+                                SettingsActivity.setDefaults("allowed_hour", String.valueOf(allowedHour), context);
+                                SettingsActivity.setDefaults("minutes", String.valueOf(minutes), context);
+                            }
+                        }
                         intent.putExtra("CHOSEN_WORD", findWord(ccTV.getText().toString(), offset));
                         startActivity(intent);
                     } catch (StringIndexOutOfBoundsException e) {

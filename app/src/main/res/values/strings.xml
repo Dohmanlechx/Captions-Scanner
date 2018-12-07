@@ -19,15 +19,14 @@
     <string name="edit_word">Edit</string>
     <string name="edit_text">Edit the word:</string>
     <string name="confirm_word">Confirm</string>
-    <string name="banned">Application currently disabled due to suspected abuse.\n</string>
+    <string name="banned">Application currently disabled due to suspected abuse.</string>
     <string name="store_fail">Failed to store word</string>
     <string name="saved_word">Word stored!</string>
     <!--STOREDWORDSACTIVITY-->
     <string name="no_data">No words scanned</string>
     <!--WARNING DIALOG-->
     <string name="warning_title">Slow down!</string>
-    <!--<string name="warning_message">You are abusing the application right now. Please wait at least one minute and thereafter keep a normal usage.\nThank you for understanding!</string>-->
-    <string name="warning_message">Application detects </string>
+    <string name="warning_message">Application detects abnormal usage. Please wait at least one minute before trying again.\n\nThank you for understanding!</string>
     <string name="warning_ok">OK</string>
     <!--SETTINGS-->
     <string name="mother_tongue">Mother Tongue</string>

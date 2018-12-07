@@ -253,7 +253,7 @@ public class WordActivity extends AppCompatActivity {
         tabs.clearOnTabSelectedListeners();
     }
 
-    private void showWarningBox() {
+    public void showWarningBox() {
         MainActivity.warned = true;
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context, android.app.AlertDialog.THEME_HOLO_DARK);
         builder.setCancelable(false);
