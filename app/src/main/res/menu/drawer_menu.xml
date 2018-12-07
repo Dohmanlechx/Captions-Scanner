@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_words"
+            android:icon="@drawable/icon_word"
+            android:title="@string/my_words" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/icon_settings"
+            android:title="@string/settings" />
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_rate"
+                android:icon="@drawable/ic_rate"
+                android:title="@string/rate_us" />
+            <item
+                android:id="@+id/nav_reportbug"
+                android:icon="@drawable/icon_bug"
+                android:title="@string/report_bugs" />
+        </menu>
+    </item>
+
+</menu>
