@@ -136,8 +136,10 @@ public class WordActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (MainActivity.warned)
+        if (MainActivity.warned) {
+            MainActivity.warned = false;
             showWarningBox();
+        }
     }
 
     @Override
