@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -94,6 +95,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navView = findViewById(R.id.nav_view);
         View headerView = navView.getHeaderView(0);
         navView.setNavigationItemSelectedListener(this);
+        // Version number TextView
+        TextView versionTV = headerView.findViewById(R.id.tv_version);
+        Resources res = getResources();
+        String text = String.format(res.getString(R.string.version_name), BuildConfig.VERSION_NAME);
+        versionTV.setText(text);
 
         // ActionBarDrawerToggle
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
