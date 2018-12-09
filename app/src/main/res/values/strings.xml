@@ -1,7 +1,10 @@
 <resources>
+    <!--TUTORIAL-->
+    <string name="tutorialPic">Tutorial Picture</string>
+    <string name="tutorial_welcome">Welcome!</string>
     <!--MAINACTIVITY-->
     <string name="app_name">Captions Scanner</string>
-    <string name="cc_example">Placeholder for captions. abcd\nScan, then click on any word!</string>
+    <string name="cc_example">Placeholder for captions.\nScan, then click on any word!</string>
     <string name="holdandrelease">HOLD AND RELEASE</string>
     <!--NAVIGATION DRAWER-->
     <string name="my_words">Words</string>

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -43,6 +45,9 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "MainActivity";
     private final Context context = this;
+
+    private SharedPreferences preferences;
+    private AlertDialog dialog;
 
     // Variables for the ban thing
     public static final Handler handler = new Handler();
@@ -73,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Checking if it's a first-time user
+        preferences = this.getPreferences(Context.MODE_PRIVATE);
 
         // Checking ban status
         banned = SettingsActivity.getBanBoolean(context);
@@ -108,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         makeWordsClickable(); // TODO: DEVELOPER ONLY, REMOVE LATER!
 
         setButtons();
+        runTutorial(); // TODO: DEVELOPER ONLY, REMOVE LATER!
 
         // Initialize the scanner
         initWordScanner();
@@ -192,8 +201,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
+        Boolean firstTimer = getPreferences(MODE_PRIVATE).getBoolean("first_timer", true);
+        if (firstTimer) {
+            runTutorial();
+            getPreferences(MODE_PRIVATE).edit().putBoolean("first_timer", false).apply();
+        }
+
         SettingsActivity.setDefaults("words_scanned", String.valueOf(wordsScanned), context);
         updateTextCount();
+    }
+
+    private void runTutorial() {
+        Log.d(TAG, "runTutorial: First-timer user confirmed.");
+        View messageView = getLayoutInflater().inflate(R.layout.tutorial, null, false);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_NoActionBar);
+        builder.setTitle(getString(R.string.tutorial_welcome));
+        View titleView = getLayoutInflater().inflate(R.layout.tutorial_title, null, false);
+        builder.setCustomTitle(titleView);
+        builder.setIcon(R.drawable.icon_word);
+        builder.setView(messageView);
+        messageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
     }
 
     private void updateTextCount() {
