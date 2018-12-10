@@ -119,10 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         updateTextCount();
 
-        makeWordsClickable(); // TODO: DEVELOPER ONLY, REMOVE LATER!
-
         setButtons();
-        runTutorial(); // TODO: DEVELOPER ONLY, REMOVE LATER!
 
         // Initialize the scanner
         initWordScanner();
@@ -339,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 fullLine.append(upperLine);
                                 fullLine.append("\n");
                                 fullLine.append(lowerLine);
-                                //makeWordsClickable(); // TODO ENABLE LATER!
+                                makeWordsClickable();
                                 ccTV.setText(fullLine);
                                 upperLine = "";
                                 lowerLine = "";
