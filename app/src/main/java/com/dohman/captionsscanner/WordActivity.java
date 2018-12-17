@@ -154,7 +154,6 @@ public class WordActivity extends AppCompatActivity {
         if (!db.searchWord(wordStr) && !getWord().getDefinitions().get(0).equals("")) {
             db.insertData(wordStr, translatedStr, jsonForDatabase); // Having this in onBackPressed() so it can't be called too early
             Toast.makeText(context, getString(R.string.saved_word), Toast.LENGTH_SHORT).show();
-            MainActivity.addToCount();
         }
     }
 

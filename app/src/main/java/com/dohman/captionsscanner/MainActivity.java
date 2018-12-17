@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String upperLine;
     private String lowerLine;
 
-    public static int wordsScanned;
-
     private boolean isButtonDown = false;
     private final int RequestCameraPermissionID = 1001;
     private int offset;
@@ -118,6 +116,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         updateTextCount();
 
         setButtons();
+
+        // DEVELOPER ONLY
+//        makeWordsClickable();
 
         // Initialize the scanner
         initWordScanner();
@@ -210,7 +211,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getPreferences(MODE_PRIVATE).edit().putBoolean("first_timer", false).apply();
         }
 
-        SettingsActivity.setDefaults("words_scanned", String.valueOf(wordsScanned), context);
         updateTextCount();
     }
 
@@ -242,7 +242,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             count += 1;
         }
 
-        wordsScanned = count;
         String res = getString(R.string.words_scanned);
         String formatted = String.format(res, count);
         wordsScannedTV.setText(formatted);
@@ -422,9 +421,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return str.substring(startIndex, endIndex);
-    }
-
-    public static void addToCount() {
-        wordsScanned++;
     }
 }
