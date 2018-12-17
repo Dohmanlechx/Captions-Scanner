@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="72" />
+                                                <entry key="scalingPercent" value="67" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,7 +33,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="C:\Development\AndroidStudioProjects\My-Degree-Project\app\src\main\res\drawable\appicon.png" />
+                                      <entry key="foregroundImage" value="C:\Development\AndroidStudioProjects\My-Degree-Project\app\src\main\res\drawable\app_icon.png" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -47,11 +47,6 @@
                 </map>
               </option>
             </PersistentState>
-          </value>
-        </entry>
-        <entry key="vectorWizard">
-          <value>
-            <PersistentState />
           </value>
         </entry>
       </map>
