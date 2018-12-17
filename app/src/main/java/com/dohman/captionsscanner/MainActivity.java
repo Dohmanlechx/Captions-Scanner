@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +32,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dohman.captionsscanner.controller.DatabaseHelper;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.Line;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private SharedPreferences preferences;
     private AlertDialog dialog;
+    private DatabaseHelper db = new DatabaseHelper(this);
 
     // Variables for the ban thing
     public static final Handler handler = new Handler();
@@ -111,11 +114,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         surfaceView = findViewById(R.id.surfaceview);
         ccTV = findViewById(R.id.tv_cc);
         wordsScannedTV = headerView.findViewById(R.id.words_scanned);
-
-        // Checking if there is a stored count in prefs
-        String str = SettingsActivity.getDefaults("words_scanned", context);
-        if (str != null)
-            wordsScanned = Integer.parseInt(str);
 
         updateTextCount();
 
@@ -204,6 +202,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
+        updateTextCount();
+
         Boolean firstTimer = getPreferences(MODE_PRIVATE).getBoolean("first_timer", true);
         if (firstTimer) {
             runTutorial();
@@ -236,15 +236,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void updateTextCount() {
-        if (SettingsActivity.getDefaults("words_scanned", context) == null) {
-            String res = getString(R.string.words_scanned);
-            String formatted = String.format(res, 0);
-            wordsScannedTV.setText(formatted);
-        } else {
-            String res = getString(R.string.words_scanned);
-            String formatted = String.format(res, Integer.parseInt(SettingsActivity.getDefaults("words_scanned", context)));
-            wordsScannedTV.setText(formatted);
+        Cursor cursorCount = db.viewData();
+        int count = 0;
+        while (cursorCount.moveToNext()) {
+            count += 1;
         }
+
+        wordsScanned = count;
+        String res = getString(R.string.words_scanned);
+        String formatted = String.format(res, count);
+        wordsScannedTV.setText(formatted);
     }
 
     @SuppressLint("ClickableViewAccessibility")
