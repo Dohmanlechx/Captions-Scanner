@@ -171,6 +171,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(wordsIntent);
                 break;
 
+            case R.id.nav_practice:
+                Intent gameIntent = new Intent(context, GameActivity.class);
+                startActivity(gameIntent);
+                break;
+
             case R.id.nav_settings:
                 Intent settingsIntent = new Intent(context, SettingsActivity.class);
                 startActivity(settingsIntent);
@@ -189,14 +194,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_reportbug:
-                Intent gameIntent = new Intent(context, GameActivity.class);
-                startActivity(gameIntent);
-                break;
-//                Intent emailIntent = new Intent(Intent.ACTION_SEND);
-//                emailIntent.setType("plain/text");
-//                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"captionsscanner@outlook.com"});
-//                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Bug Report - Captions Scanner");
-//                startActivity(Intent.createChooser(emailIntent, "Choose email client..."));
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.setType("plain/text");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"captionsscanner@outlook.com"});
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Bug Report - Captions Scanner");
+                startActivity(Intent.createChooser(emailIntent, "Choose email client..."));
         }
 
         drawer.closeDrawer(GravityCompat.START);

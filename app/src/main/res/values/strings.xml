@@ -9,6 +9,7 @@
     <!--NAVIGATION DRAWER-->
     <string name="version_name">v.%1$s</string>
     <string name="my_words">Words</string>
+    <string name="practice">Practice</string>
     <string name="report_bugs">Report bug</string>
     <string name="settings">Settings</string>
     <string name="rate_us">Rate us</string>

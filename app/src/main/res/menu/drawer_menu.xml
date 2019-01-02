@@ -9,6 +9,10 @@
             android:icon="@drawable/icon_word"
             android:title="@string/my_words" />
         <item
+            android:id="@+id/nav_practice"
+            android:icon="@drawable/icon_study"
+            android:title="@string/practice" />
+        <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/icon_settings"
             android:title="@string/settings" />
