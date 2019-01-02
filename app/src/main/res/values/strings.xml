@@ -26,6 +26,9 @@
     <string name="banned">Application currently disabled due to suspected abuse.</string>
     <string name="store_fail">Failed to store word</string>
     <string name="saved_word">Word stored!</string>
+    <!--GAMEACTIVITY-->
+    <string name="title_noword">No words scanned</string>
+    <string name="reply">write…</string>
     <!--STOREDWORDSACTIVITY-->
     <string name="no_data">No words scanned</string>
     <!--WARNING DIALOG-->

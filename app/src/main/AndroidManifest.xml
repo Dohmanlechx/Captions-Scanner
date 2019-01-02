@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.dohman.captionsscanner.MainActivity"
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -31,14 +31,15 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name="com.dohman.captionsscanner.WordActivity" />
+        <activity android:name=".WordActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name="com.dohman.captionsscanner.StoredWordsActivity" />
-        <activity android:name="com.dohman.captionsscanner.SettingsActivity" />
+        <activity android:name=".StoredWordsActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".GameActivity"></activity>
     </application>
 
 </manifest>
