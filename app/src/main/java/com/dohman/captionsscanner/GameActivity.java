@@ -17,7 +17,7 @@ public class GameActivity extends AppCompatActivity {
     private static final String TAG = "GameActivity";
     private final DatabaseHelper db = new DatabaseHelper(this);
 
-    private TextView result;
+    private TextView answerTv;
     private TextView textView;
 
     @Override
@@ -25,7 +25,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        result = findViewById(R.id.result);
+        answerTv = findViewById(R.id.answer);
         textView = findViewById(R.id.tv_title);
         final Cursor currentWord;
 
@@ -42,16 +42,14 @@ public class GameActivity extends AppCompatActivity {
                     boolean handled = false;
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         if (editText.getText().toString().toLowerCase().contains(currentWord.getString(2))) {
-                            Log.d(TAG, "onEditorAction: INPUT =" + editText.getText().toString());
-                            Log.d(TAG, "onEditorAction: SVAR =" + currentWord.getString(2));
-                            result.setVisibility(View.VISIBLE);
-                            result.setText(getString(R.string.correct));
+                            // CORRECT ANSWER
+                            editText.setTextColor(getResources().getColor(R.color.correct_color));
                             handled = true;
                         } else {
-                            Log.d(TAG, "onEditorAction: INPUT =" + editText.getText().toString());
-                            Log.d(TAG, "onEditorAction: SVAR =" + currentWord.getString(2));
-                            result.setVisibility(View.VISIBLE);
-                            result.setText(getString(R.string.incorrecct));
+                            // INCORRECT ANSWER
+                            editText.setTextColor(getResources().getColor(R.color.incorrect_color));
+                            answerTv.setText(currentWord.getString(2));
+                            answerTv.setVisibility(View.VISIBLE);
                             handled = true;
                         }
                     }

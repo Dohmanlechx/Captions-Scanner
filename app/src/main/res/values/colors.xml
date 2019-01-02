@@ -15,6 +15,8 @@
 	<color name="black_transparent">#aa000000</color>
 	<color name="transparent">#00000000</color>
 	<color name="white_transparent">#73FFFFFF</color>
+	<color name="correct_color">#0a7a00</color>
+	<color name="incorrect_color">#ba0000</color>
 
 	<color name="wordactivity_background">#f2f2f2</color>
 </resources>
