@@ -152,6 +152,7 @@ public class WordActivity extends AppCompatActivity {
     // Also checks if word is correct before storing it
     private void storeWord() {
         if (!db.searchWord(wordStr) && !getWord().getDefinitions().get(0).equals("")) {
+            SettingsActivity.setDefaults("databaseNotEmpty", "true", this);
             db.insertData(wordStr, translatedStr, jsonForDatabase); // Having this in onBackPressed() so it can't be called too early
             Toast.makeText(context, getString(R.string.saved_word), Toast.LENGTH_SHORT).show();
         }

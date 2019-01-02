@@ -27,6 +27,7 @@
     <string name="store_fail">Failed to store word</string>
     <string name="saved_word">Word stored!</string>
     <!--GAMEACTIVITY-->
+    <string name="toastnowords">Go ahead and try scanning!</string>
     <string name="title_noword">No words scanned</string>
     <string name="reply">write…</string>
     <string name="correct">Correct!</string>
