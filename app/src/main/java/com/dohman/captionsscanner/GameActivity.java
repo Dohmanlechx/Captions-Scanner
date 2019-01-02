@@ -55,12 +55,18 @@ public class GameActivity extends AppCompatActivity {
                                 public void run() {
                                     reset();
                                 }
-                            }, 1000);
+                            }, 1500);
                         } else {
                             // INCORRECT ANSWER
                             editText.setTextColor(getResources().getColor(R.color.incorrect_color));
                             answerTv.setText(currentWord.getString(2));
                             answerTv.setVisibility(View.VISIBLE);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    reset();
+                                }
+                            }, 3000);
                         }
                     }
 
@@ -68,7 +74,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     private Cursor getRandomWord() {
