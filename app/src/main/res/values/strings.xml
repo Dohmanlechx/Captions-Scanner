@@ -29,6 +29,8 @@
     <!--GAMEACTIVITY-->
     <string name="title_noword">No words scanned</string>
     <string name="reply">write…</string>
+    <string name="correct">Correct!</string>
+    <string name="incorrecct">Incorrect!</string>
     <!--STOREDWORDSACTIVITY-->
     <string name="no_data">No words scanned</string>
     <!--WARNING DIALOG-->

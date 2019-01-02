@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -17,14 +18,18 @@ public class GameActivity extends AppCompatActivity {
     private static final String TAG = "GameActivity";
     private final DatabaseHelper db = new DatabaseHelper(this);
 
+    private TextView result;
+    private TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        Cursor cursorRandom = db.randomData(); // Index 0: id, Index 1: word, Index 2: translated, Index 3: json
-        String test = cursorRandom.getString(2);
-        Log.d(TAG, "onCreate: " + test);
+        result = findViewById(R.id.result);
+        textView = findViewById(R.id.tv_title);
+        final Cursor currentWord = getRandomWord();
+        textView.setText(currentWord.getString(1));
 
         final EditText editText = findViewById(R.id.editText);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -32,11 +37,27 @@ public class GameActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    // Do something
-                    handled = true;
+                    if (editText.getText().toString().toLowerCase().contains(currentWord.getString(2))) {
+                        Log.d(TAG, "onEditorAction: INPUT =" + editText.getText().toString());
+                        Log.d(TAG, "onEditorAction: SVAR =" + currentWord.getString(2));
+                        result.setVisibility(View.VISIBLE);
+                        result.setText(getString(R.string.correct));
+                        handled = true;
+                    } else {
+                        Log.d(TAG, "onEditorAction: INPUT =" + editText.getText().toString());
+                        Log.d(TAG, "onEditorAction: SVAR =" + currentWord.getString(2));
+                        result.setVisibility(View.VISIBLE);
+                        result.setText(getString(R.string.incorrecct));
+                        handled = true;
+                    }
                 }
+                
                 return handled;
             }
         });
+    }
+
+    private Cursor getRandomWord() {
+        return db.randomData();
     }
 }
