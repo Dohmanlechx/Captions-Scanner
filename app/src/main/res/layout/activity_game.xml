@@ -31,7 +31,9 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/reply"
+        android:imeOptions="actionDone"
         android:inputType="textPersonName"
+        android:singleLine="true"
         app:layout_constraintStart_toStartOf="@+id/tv_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
         tools:ignore="Autofill" />
