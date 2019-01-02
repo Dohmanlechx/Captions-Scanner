@@ -9,6 +9,7 @@
     <!--NAVIGATION DRAWER-->
     <string name="version_name">v.%1$s</string>
     <string name="my_words">Words</string>
+    <string name="practice">Practice</string>
     <string name="report_bugs">Report bug</string>
     <string name="settings">Settings</string>
     <string name="rate_us">Rate us</string>
@@ -26,6 +27,12 @@
     <string name="banned">Application currently disabled due to suspected abuse.</string>
     <string name="store_fail">Failed to store word</string>
     <string name="saved_word">Word stored!</string>
+    <!--GAMEACTIVITY-->
+    <string name="toastnowords">Go ahead and try scanning!</string>
+    <string name="title_noword">No words scanned</string>
+    <string name="reply">write…</string>
+    <string name="correct">Correct!</string>
+    <string name="incorrecct">Incorrect!</string>
     <!--STOREDWORDSACTIVITY-->
     <string name="no_data">No words scanned</string>
     <!--WARNING DIALOG-->

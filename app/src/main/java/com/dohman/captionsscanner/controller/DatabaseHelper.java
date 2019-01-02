@@ -61,6 +61,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
+    // View random data
+    public Cursor randomData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * from " + DB_TABLE + "\nORDER BY RANDOM()" + "\nLIMIT 1", null);
+        if (cursor.moveToFirst()) {
+            return cursor;
+        }
+
+        return cursor;
+    }
+
     // See if word already is in the database
     public boolean searchWord(String word) {
         SQLiteDatabase db = this.getReadableDatabase();

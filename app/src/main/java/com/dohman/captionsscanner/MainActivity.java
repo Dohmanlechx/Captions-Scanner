@@ -171,6 +171,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(wordsIntent);
                 break;
 
+            case R.id.nav_practice:
+                Intent gameIntent = new Intent(context, GameActivity.class);
+                startActivity(gameIntent);
+                break;
+
             case R.id.nav_settings:
                 Intent settingsIntent = new Intent(context, SettingsActivity.class);
                 startActivity(settingsIntent);
