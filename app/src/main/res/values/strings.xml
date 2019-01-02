@@ -31,8 +31,6 @@
     <string name="toastnowords">Go ahead and try scanning!</string>
     <string name="title_noword">No words scanned</string>
     <string name="reply">write…</string>
-    <string name="correct">Correct!</string>
-    <string name="incorrecct">Incorrect!</string>
     <!--STOREDWORDSACTIVITY-->
     <string name="no_data">No words scanned</string>
     <!--WARNING DIALOG-->
@@ -40,7 +38,7 @@
     <string name="warning_message">Application detects abnormal usage. Please wait at least one minute before trying again.\n\nThank you for understanding!</string>
     <string name="warning_ok">OK</string>
     <!--SETTINGS-->
-    <string name="mother_tongue">Mother Tongue</string>
+    <string name="mother_tongue">Native language</string>
     <string-array name="languages">
         <item>[not selected]</item>
         <item>Albanian</item>
