@@ -1,10 +1,12 @@
 package com.dohman.captionsscanner.controller;
 
+import android.app.DownloadManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "DatabaseHelper";
@@ -75,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // See if word already is in the database
     public boolean searchWord(String word) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "Select * from " + DB_TABLE + " WHERE " + WORD + " Like '%" + word + "%'";
+        String query = "Select * from " + DB_TABLE + " WHERE " + WORD + " = '" + word + "'";
         Cursor cursor = db.rawQuery(query, null);
 
         boolean found = cursor != null && cursor.getCount() > 0;
