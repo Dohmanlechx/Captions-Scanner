@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
         updateTextCount();
 
-        Boolean firstTimer = getPreferences(MODE_PRIVATE).getBoolean("first_timer", true);
+        boolean firstTimer = getPreferences(MODE_PRIVATE).getBoolean("first_timer", true);
         if (firstTimer) {
             runTutorial();
             getPreferences(MODE_PRIVATE).edit().putBoolean("first_timer", false).apply();
@@ -232,6 +232,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                Intent chooseLanguageIntent = new Intent(context, SettingsActivity.class);
+                startActivity(chooseLanguageIntent);
+                Toast.makeText(context, context.getString(R.string.choose_language), Toast.LENGTH_LONG).show();
             }
         });
 
