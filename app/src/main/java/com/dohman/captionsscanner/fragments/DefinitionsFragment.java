@@ -1,11 +1,11 @@
 package com.dohman.captionsscanner.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,7 +84,7 @@ public class DefinitionsFragment extends Fragment {
                     Snackbar snackbar = Snackbar.make(parent, getString(R.string.banned) +
                             " Try again at " + hour + ":0" + minutes + " o'clock.", Snackbar.LENGTH_INDEFINITE);
                     View snackbarView = snackbar.getView();
-                    TextView textView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = snackbarView.findViewById(R.id.snackbar_text);
                     textView.setMaxLines(5);
 
                     snackbar.show();
@@ -92,7 +92,7 @@ public class DefinitionsFragment extends Fragment {
                     Snackbar snackbar = Snackbar.make(parent, getString(R.string.banned) +
                             " Try again at " + hour + ":" + minutes + " o'clock.", Snackbar.LENGTH_INDEFINITE);
                     View snackbarView = snackbar.getView();
-                    TextView textView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    TextView textView = snackbarView.findViewById(R.id.snackbar_text);
                     textView.setMaxLines(5);
 
                     snackbar.show();
