@@ -24,9 +24,9 @@ public class FetchAPIData extends Thread {
 	public void run() {
 		synchronized (this) {
 			try {
-				HttpResponse<JsonNode> response = Unirest.get("https://wordsapiv1.p.mashape.com/words/" + WordActivity.wordStr)
+				HttpResponse<JsonNode> response = Unirest.get("https://wordsapiv1.p.rapidapi.com/words/" + WordActivity.wordStr)
 						.header("X-Mashape-Key", Config.WORDSAPIKEY)
-						.header("X-Mashape-Host", "wordsapiv1.p.mashape.com")
+						.header("X-Mashape-Host", "wordsapiv1.p.rapidapi.com")
 						.asJson();
 				
 				JSONObject overallJsonObj = response.getBody().getObject();
