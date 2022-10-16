@@ -48,7 +48,8 @@ public class StoredWordsActivity extends AppCompatActivity {
         wordsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                calls++;
+                // Disabled for myself
+//                calls++;
                 if (calls == 6) {
                     if (!warned)
                         warned = true;

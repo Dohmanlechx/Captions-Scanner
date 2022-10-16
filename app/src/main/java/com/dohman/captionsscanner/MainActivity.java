@@ -365,7 +365,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     offset = ccTV.getOffsetForPosition(event.getX(), event.getY());
                     Intent intent = new Intent(context, WordActivity.class);
                     try {
-                        calls++;
+                        // Disabled for myself
+//                        calls++;
                         if (calls == 6) {
                             if (!warned)
                                 warned = true;
